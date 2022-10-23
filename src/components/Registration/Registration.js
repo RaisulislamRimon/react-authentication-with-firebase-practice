@@ -13,6 +13,12 @@ const Registration = () => {
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
+    const test = /\S+@\S+\.\S+/.test(e.target.value);
+    if (!test) {
+      setError(`Please give a valid email`);
+      return;
+    }
+    setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
@@ -31,7 +37,7 @@ const Registration = () => {
         </div>
         <div className="register-form  w-100">
           <div className="input-box">
-            <p className="text-danger">{"error"}</p>
+            <p className="text-danger">{error}</p>
             <form action="">
               <input
                 onBlur={handleName}
