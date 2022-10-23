@@ -19,6 +19,7 @@ const Registration = () => {
       return;
     }
     setEmail(e.target.value);
+    setError(``);
   };
 
   const handlePassword = (e) => {
