@@ -6,6 +6,11 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const handleName = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="mt-5">
       <div className="main-container d-flex container justify-content-between align-items-center">
@@ -21,6 +26,7 @@ const Registration = () => {
             <p className="text-danger">{"error"}</p>
             <form action="">
               <input
+                onBlur={handleName}
                 className="form-control p-3 m-2"
                 type="text"
                 placeholder="Enter your name"
