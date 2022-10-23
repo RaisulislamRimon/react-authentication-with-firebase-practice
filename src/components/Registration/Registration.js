@@ -9,6 +9,7 @@ const Registration = () => {
 
   const handleName = (e) => {
     console.log(e.target.value);
+    setName(e.target.value);
   };
 
   return (
