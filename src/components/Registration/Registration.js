@@ -8,7 +8,6 @@ const Registration = () => {
   const [error, setError] = useState("");
 
   const handleName = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
