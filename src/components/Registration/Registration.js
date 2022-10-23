@@ -11,6 +11,14 @@ const Registration = () => {
     setName(e.target.value);
   };
 
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   return (
     <div className="mt-5">
       <div className="main-container d-flex container justify-content-between align-items-center">
@@ -33,12 +41,14 @@ const Registration = () => {
                 required
               />
               <input
+                onBlur={handleEmail}
                 className="form-control p-3 m-2"
                 type="email"
                 placeholder="Email"
                 required
               />
               <input
+                onBlur={handlePassword}
                 className="form-control p-3 m-2"
                 type="password"
                 placeholder="password"
