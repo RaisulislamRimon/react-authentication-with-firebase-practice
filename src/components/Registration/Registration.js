@@ -23,7 +23,13 @@ const Registration = () => {
   };
 
   const handlePassword = (e) => {
+    console.log(e.target.value);
+    if (!/(?=.{8,})/.test(e.target.value)) {
+      setError(`password must be 8 characters.`);
+      return;
+    }
     setPassword(e.target.value);
+    setError(``);
   };
 
   return (
