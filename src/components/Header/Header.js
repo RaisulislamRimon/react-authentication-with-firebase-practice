@@ -17,9 +17,9 @@ const Header = () => {
           <Link to="/home" className="text-decoration-none">
             <li className="nav-link items  ms-3 text-info fw-bolder">Home</li>
           </Link>
-          {/* <Link to="/login" className="text-decoration-none">
+          <Link to="/login" className="text-decoration-none">
             <li className="nav-link items  ms-3 text-info fw-bolder">Login</li>
-          </Link> */}
+          </Link>
 
           <li
             role="button"
