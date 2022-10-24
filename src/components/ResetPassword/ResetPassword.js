@@ -1,12 +1,23 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Swal from "sweetalert2";
 import app from "../../Hook/firebaseConfig";
 
 const ResetPassword = (props) => {
   const [email, setEmail] = useState("");
   const auth = getAuth(app);
+  const handleResetPassword = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        props.onHide();
+        Swal.fire("Password reset email sent, check your inbox.");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
   return (
     <Modal
       {...props}
@@ -22,16 +33,22 @@ const ResetPassword = (props) => {
       <Modal.Body>
         <h4>Reset your password</h4>
         <input
+          onBlur={(e) => setEmail(e.target.value)}
           type="email"
           name="email"
           id="email"
           className="form-control"
           placeholder="email"
         />
-        <input type="submit" value="Change password" className="btn btn-primary mt-4" />
+        <input
+          onClick={handleResetPassword}
+          type="submit"
+          value="Change password"
+          className="btn btn-primary mt-4"
+        />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        {/* <Button onClick={props.onHide}>Close</Button> */}
       </Modal.Footer>
     </Modal>
   );
