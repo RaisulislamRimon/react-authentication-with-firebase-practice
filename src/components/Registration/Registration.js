@@ -32,6 +32,10 @@ const Registration = () => {
       setError(`Password must be uppercase`);
       return;
     }
+    if (!/(?=.*[!#$@%&? "])/.test(e.target.value)) {
+      setError(`Password should have special characters`);
+      return;
+    }
     setPassword(e.target.value);
     setError(``);
   };
