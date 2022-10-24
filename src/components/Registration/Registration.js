@@ -28,6 +28,10 @@ const Registration = () => {
       setError(`password must be 8 characters.`);
       return;
     }
+    if (!/(?=.*[a-zA-Z])/.test(e.target.value)) {
+      setError(`Password must be uppercase`);
+      return;
+    }
     setPassword(e.target.value);
     setError(``);
   };
