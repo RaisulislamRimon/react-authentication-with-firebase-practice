@@ -4,11 +4,11 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   sendEmailVerification,
-  signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import app from "../../Hook/firebaseConfig";
 import Swal from "sweetalert2";
+import useFirebase from "../../Hook/useFirebase";
 
 const Registration = ({ user, setUser }) => {
   const [name, setName] = useState("");
@@ -18,6 +18,8 @@ const Registration = ({ user, setUser }) => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const auth = getAuth(app);
+
+  const { handleGoogleLogin } = useFirebase();
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -158,7 +160,10 @@ const Registration = ({ user, setUser }) => {
               </button>
             </form>
           </div>
-          <button className="btn mt-3 border d-flex align-items-center justify-content-evenly p-2 m-auto">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn mt-3 border d-flex align-items-center justify-content-evenly p-2 m-auto"
+          >
             <img
               className="w-25 image-fluid btn-image"
               src="https://img.icons8.com/color/344/google-logo.png"

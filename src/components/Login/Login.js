@@ -14,11 +14,11 @@ const Login = ({ user, setUser }) => {
 
   const auth = getAuth(app);
 
-  const info = useFirebase();
+  const { info, handleGoogleLogin } = useFirebase();
   console.log(info);
 
-  const { test1, test2 } = info;
-  console.log(test1, test2);
+  // const { test1, test2 } = info;
+  // console.log(test1, test2);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -97,7 +97,10 @@ const Login = ({ user, setUser }) => {
               Login
             </button>
           </div>
-          <button className="btn mt-3 border d-flex align-items-center justify-content-evenly p-2 m-auto">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn mt-3 border d-flex align-items-center justify-content-evenly p-2 m-auto"
+          >
             <img
               className="w-25 image-fluid btn-image"
               src="https://img.icons8.com/color/344/google-logo.png"
