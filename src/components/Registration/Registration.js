@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
@@ -100,6 +101,17 @@ const Registration = ({ user, setUser }) => {
       // ...
     });
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        setUser(uid);
+      } else {
+        console.log("no user");
+      }
+    });
+  }, []);
 
   return (
     <div className="mt-5">
