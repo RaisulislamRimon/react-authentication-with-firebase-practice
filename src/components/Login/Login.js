@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import app from "../../Hook/firebaseConfig";
 import Swal from "sweetalert2";
+import ResetPassword from "../ResetPassword/ResetPassword";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [modalShow, setModalShow] = useState(false);
 
   const auth = getAuth(app);
 
@@ -69,7 +71,11 @@ const Login = () => {
                   are you new? please register
                 </small>
               </Link>
-              <span role="button" className="ms-4 text-primary cursor-pointer">
+              <span
+                onClick={() => setModalShow(true)}
+                role="button"
+                className="ms-4 text-primary cursor-pointer"
+              >
                 Forget Password?
               </span>
             </p>
@@ -91,6 +97,7 @@ const Login = () => {
             />
             <p className="fw-bold">Google SignIn</p>
           </button>
+          <ResetPassword show={modalShow} onHide={() => setModalShow(false)} />
         </div>
       </div>
     </div>
