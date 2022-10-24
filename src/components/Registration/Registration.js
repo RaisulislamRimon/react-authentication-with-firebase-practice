@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
@@ -60,6 +61,7 @@ const Registration = () => {
           setError(``);
           console.log(user);
           updateName();
+          verify();
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -84,6 +86,13 @@ const Registration = () => {
         // An error occurred
         // ...
       });
+  };
+
+  const verify = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      // Email verification sent!
+      // ...
+    });
   };
 
   return (
