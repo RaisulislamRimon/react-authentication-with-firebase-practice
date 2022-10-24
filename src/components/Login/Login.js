@@ -1,8 +1,43 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import app from "../../Hook/firebaseConfig";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const auth = getAuth(app);
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+        Swal.fire("Good job!", "You clicked the button!", "success");
+        setError(``);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setError(errorCode);
+      });
+  };
   return (
     <div className="mt-5">
       <div className="main-container d-flex container justify-content-between align-items-center">
@@ -14,14 +49,16 @@ const Login = () => {
           />
         </div>
         <div className="register-form  w-100">
-          <p>{"error"}</p>
+          <p>{error}</p>
           <div className="input-box">
             <input
+              onBlur={handleEmail}
               className="form-control p-3 m-2"
               type="email"
               placeholder="Email"
             />
             <input
+              onBlur={handlePassword}
               className="form-control p-3 m-2"
               type="password"
               placeholder="password"
@@ -39,7 +76,10 @@ const Login = () => {
             <input className="p-2" type="checkbox" />{" "}
             <span className="mb-3 ">remember me </span>
             <br />
-            <button className="btn btn-info p-3 w-50 mt-3 fw-bold text-white">
+            <button
+              onClick={handleLogin}
+              className="btn btn-info p-3 w-50 mt-3 fw-bold text-white"
+            >
               Login
             </button>
           </div>

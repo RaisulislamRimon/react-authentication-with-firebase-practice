@@ -8,6 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../../Hook/firebaseConfig";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const [name, setName] = useState("");
@@ -63,6 +64,7 @@ const Registration = () => {
           console.log(user);
           updateName();
           verify();
+          Swal.fire("Good job!", "You clicked the button!", "success");
         })
         .catch((error) => {
           const errorCode = error.code;
