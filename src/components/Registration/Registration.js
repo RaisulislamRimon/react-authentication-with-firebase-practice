@@ -10,7 +10,7 @@ import {
 import app from "../../Hook/firebaseConfig";
 import Swal from "sweetalert2";
 
-const Registration = () => {
+const Registration = ({ user, setUser }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,10 +58,11 @@ const Registration = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
+          const userInfo = userCredential.user;
           // ...
           setError(``);
-          console.log(user);
+          console.log(userInfo);
+          setUser(userInfo);
           updateName();
           verify();
           Swal.fire("Good job!", "You clicked the button!", "success");

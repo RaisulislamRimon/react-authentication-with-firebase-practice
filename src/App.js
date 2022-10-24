@@ -14,10 +14,11 @@ import Registration from "./components/Registration/Registration";
 import About from "./components/About/About";
 
 function App() {
+  const [user, setUser] = useState("");
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Main></Main>,
+      element: <Main user={user} setUser={setUser}></Main>,
       children: [
         {
           path: "/",
@@ -29,7 +30,7 @@ function App() {
         },
         {
           path: "/login",
-          element: <Login></Login>,
+          element: <Login user={user} setUser={setUser}></Login>,
         },
         {
           path: "/registration",

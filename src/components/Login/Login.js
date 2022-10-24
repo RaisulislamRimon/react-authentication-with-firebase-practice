@@ -5,7 +5,7 @@ import app from "../../Hook/firebaseConfig";
 import Swal from "sweetalert2";
 import ResetPassword from "../ResetPassword/ResetPassword";
 
-const Login = () => {
+const Login = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,8 +27,9 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user);
+        const userInfo = userCredential.user;
+        console.log(userInfo);
+        setUser(userInfo);
         // ...
         Swal.fire("Good job!", "You clicked the button!", "success");
         setError(``);
