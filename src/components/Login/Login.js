@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import app from "../../Hook/firebaseConfig";
 import Swal from "sweetalert2";
 import ResetPassword from "../ResetPassword/ResetPassword";
+import useFirebase from "../../Hook/useFirebase";
 
 const Login = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,9 @@ const Login = ({ user, setUser }) => {
   const [modalShow, setModalShow] = useState(false);
 
   const auth = getAuth(app);
+
+  const info = useFirebase();
+  console.log(info);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
