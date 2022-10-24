@@ -17,6 +17,9 @@ const Login = ({ user, setUser }) => {
   const info = useFirebase();
   console.log(info);
 
+  const { test1, test2 } = info;
+  console.log(test1, test2);
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
