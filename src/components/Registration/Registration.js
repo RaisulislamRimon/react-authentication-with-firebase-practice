@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import app from "../../Hook/firebaseConfig";
 
@@ -56,8 +57,9 @@ const Registration = () => {
           // Signed in
           const user = userCredential.user;
           // ...
-          console.log(user);
           setError(``);
+          console.log(user);
+          updateName();
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -67,6 +69,21 @@ const Registration = () => {
           setError(errorCode);
         });
     }
+  };
+
+  const updateName = (e) => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: "https://example.com/jane-q-user/profile.jpg",
+    })
+      .then(() => {
+        // Profile updated!
+        // ...
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+      });
   };
 
   return (
