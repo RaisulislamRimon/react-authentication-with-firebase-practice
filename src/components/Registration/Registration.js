@@ -14,6 +14,7 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const auth = getAuth(app);
 
@@ -137,10 +138,15 @@ const Registration = () => {
                   </small>
                 </Link>
               </p>
-              <input className="p-2" type="checkbox" />{" "}
+              <input
+                onClick={() => setIsDisabled(!isDisabled)}
+                className="p-2"
+                type="checkbox"
+              />{" "}
               <span className="mb-3">accept term & condition</span>
               <br />
               <button
+                disabled={isDisabled}
                 onClick={handleRegister}
                 type="submit"
                 className="btn btn-info p-3 w-50 mt-3 fw-bold text-white"
